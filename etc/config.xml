@@ -10,6 +10,7 @@
         <opengento>
             <snowflake>
                 <enable>0</enable>
+                <icon>❄</icon>
             </snowflake>
         </opengento>
     </default>
