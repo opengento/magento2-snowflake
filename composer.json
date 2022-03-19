@@ -1,0 +1,20 @@
+{
+  "name": "opengento/snowflake",
+  "version": "1.0.0",
+  "description": "Let It ❄️ ! Let It ❄️ ! Let It ❄️ !",
+  "type": "magento2-module",
+  "require": {
+    "magento/framework": "*"
+  },
+  "license": [
+    "Proprietary"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Opengento\\Snowflakes\\": ""
+    }
+  }
+}
