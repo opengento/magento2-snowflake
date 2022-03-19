@@ -29,6 +29,10 @@ class Snowflake
 
     public function getApiKey(?int $scopeId = null): string
     {
-        return $this->scopeConfig->getValue(self::CONFIG_PATH_SNOWFLAKE_OPENWEATHERMAP_API_KEY, ScopeInterface::SCOPE_STORE, $scopeId);
+        return $this->scopeConfig->getValue(
+            self::CONFIG_PATH_SNOWFLAKE_OPENWEATHERMAP_API_KEY,
+            ScopeInterface::SCOPE_STORE,
+            $scopeId
+        );
     }
 }
