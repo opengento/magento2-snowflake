@@ -8,12 +8,11 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="after.body.start">
-            <block
-                name="snowflake"
-                class="Opengento\Snowflake\Block\Snowflake"
-                template="Opengento_Snowflake::snowflake.phtml"
-                ifconfig="snowflake/general/enable"
-            />
+            <block name="opengento.snowflake.script" template="Opengento_Snowflake::snowflake.phtml" ifconfig="snowflake/general/enable">
+                <arguments>
+                    <argument name="viewModel" xsi:type="object">Opengento\Snowflake\ViewModel\Snowflake</argument>
+                </arguments>
+            </block>
         </referenceContainer>
     </body>
 </page>
