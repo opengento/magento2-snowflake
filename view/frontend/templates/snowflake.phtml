@@ -1,7 +1,6 @@
 <?php
 /** @var \Opengento\Snowflake\Block\Snowflake $block */
 ?>
-<div id="snowflake_js"></div>
 <div id="snowflake_container"></div>
 
 <script>
@@ -11,10 +10,11 @@
     ], function($) {
         var snowMax = 35;
         var snowColor = ["#DDD", "#EEE", "#CCC"];
-        var snowEntity = "<?= $block->getSnowflakeChar() ?>";
-        var snowSpeed = 0.75;
-        var snowMinSize = 8;
-        var snowMaxSize = 24;
+        var snowEntity = "<?= $block->getSnowflakeChar(); ?>";//"💸";//"👻";
+        var snowVSpeed = <?= $block->getSnowflakeVSpeed(); ?>;
+        var snowHSpeed = <?= $block->getSnowflakeHSpeed(); ?>;
+        var snowMinSize = 15;
+        var snowMaxSize = 32;
         var snowRefresh = 50;
         var snowMaxBlur = 3;
         var snowStyles = "cursor: default; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; -o-user-select: none; user-select: none;";
@@ -22,7 +22,7 @@
         var snow = [],
             pos = [],
             coords = [],
-            lefr = [],
+            left = [],
             marginBottom,
             marginRight;
 
@@ -41,7 +41,7 @@
 
         for (let i = 0; i <= snowMax; i++) {
             coords[i] = 0;
-            lefr[i] = Math.random() * 15;
+            left[i] = Math.random() * 15;
             pos[i] = 0.03 + Math.random() / 10;
             snow[i] = document.getElementById("flake" + i);
             snow[i].style.fontFamily = "inherit";
@@ -51,7 +51,8 @@
             snow[i].style.fontSize = snow[i].size + "px";
             snow[i].style.color = snowColor[randomise(snowColor.length)];
             snow[i].style.zIndex = 1000;
-            snow[i].sink = snowSpeed * snow[i].size / 5;
+            snow[i].vsink = snowVSpeed * snow[i].size / 5;
+            snow[i].hsink = snowHSpeed * snow[i].size / 5;
             snow[i].posX = randomise(marginRight - snow[i].size);
             snow[i].posY = randomise(2 * marginBottom - marginBottom - 2 * snow[i].size);
             snow[i].style.left = snow[i].posX + "px";
@@ -63,23 +64,30 @@
             return rand;
         }
         function resize() {
-            marginBottom = document.body.scrollHeight - 5;
+            if (snowVSpeed > 0) {
+                marginBottom = document.body.scrollHeight - 5;
+            } else {
+                marginBottom = 10;
+            }
             marginRight = document.body.clientWidth - 15;
         }
 
         function moveSnow() {
             for (let i = 0; i <= snowMax; i++) {
                 coords[i] += pos[i];
-                snow[i].posY += snow[i].sink;
-                snow[i].style.left = snow[i].posX + lefr[i] * Math.sin(coords[i]) + "px";
+                snow[i].posY += snow[i].vsink;
+                snow[i].posX += snow[i].hsink;
+                snow[i].style.left = snow[i].posX + left[i] * Math.sin(coords[i]) + "px";
                 snow[i].style.top = snow[i].posY + "px";
 
-                if (snow[i].posY >= marginBottom - 2 * snow[i].size || parseInt(snow[i].style.left) > (marginRight - 3 * lefr[i])) {
+                if (snowVSpeed > 0 && (snow[i].posY >= marginBottom - 2 * snow[i].size || parseInt(snow[i].style.left) > (marginRight - 3 * left[i]))) {
                     snow[i].posX = randomise(marginRight - snow[i].size);
                     snow[i].posY = 0;
                 }
+                if (snowVSpeed < 0 && (snow[i].posY < 0)) {
+                    snow[i].posY = document.body.scrollHeight - snow[i].size - 10;
+                }
             }
-
         }
 
         window.addEventListener('resize', resize);

@@ -7,7 +7,7 @@
     <section id="snowflake" translate="label" sortOrder="2022" showInDefault="1" showInWebsite="1" showInStore="1">
         <class>separator-top</class>
         <label>❄️ Snowflake</label>
-        <tab>Opengento</tab>
+        <tab>opengento</tab>
         <resource>Opengento_Snowflake::config</resource>
         <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
             <label>General Configuration</label>
@@ -18,6 +18,14 @@
             <field id="icon" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
                 <label>Icon</label>
                 <comment>Icon to display as a snowflake</comment>
+            </field>
+            <field id="hspeed" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Speed</label>
+                <comment>Positive value to fall down, negatives values to ascend</comment>
+            </field>
+            <field id="vspeed" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Speed</label>
+                <comment>Positive value to go right, negatives values to go left</comment>
             </field>
         </group>
     </section>

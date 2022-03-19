@@ -11,6 +11,8 @@
             <snowflake>
                 <enable>0</enable>
                 <icon>❄</icon>
+                <vspeed>0.75</vspeed>
+                <hspeed>0.75</hspeed>
             </snowflake>
         </opengento>
     </default>
