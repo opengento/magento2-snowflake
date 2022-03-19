@@ -22,7 +22,7 @@
                     <config_path>snowflake/general/enable</config_path>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="icon" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="icon" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
                     <label>Icon</label>
                     <comment>Icon to display as a snowflake ❄️.</comment>
                     <backend_model>Opengento\Snowflake\Model\Config\Backend\EmojiConverter</backend_model>
@@ -99,7 +99,7 @@
                     </depends>
                 </field>
 
-                <field id="api_key" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="api_key" translate="label comment" type="obscure" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
                     <label>API Key</label>
                     <config_path>snowflake/general/api_api_key</config_path>
                     <depends>
