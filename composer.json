@@ -1,0 +1,51 @@
+{
+    "name": "opengento/snowflake",
+    "version": "1.0.0",
+    "description": "Let It ❄️ ! Let It ❄️ ! Let It ❄️ !",
+    "keywords": [
+        "php",
+        "magento",
+        "magento2",
+        "fun",
+        "snowflakes",
+        "winter"
+    ],
+    "type": "magento2-module",
+    "require": {
+        "php": "^7.4 || ^8.0",
+        "magento/framework": "*",
+        "cmfcmf/openweathermap-php-api": "^3.3"
+    },
+    "license": [
+        "MIT"
+    ],
+    "homepage": "https://github.com/opengento/magento2-snowflake",
+    "authors": [
+        {
+            "name": "Opengento Team",
+            "email": "opengento@gmail.com",
+            "homepage": "https://opengento.fr/",
+            "role": "lead"
+        },
+        {
+            "name": "Mehdi Chaouch",
+            "email": "mehdi@advocodo.com",
+            "homepage": "https://www.linkedin.com/in/mehdichaouch/",
+            "role": "maintainer"
+        },
+        {
+            "name": "Xavier G",
+            "email": "-",
+            "homepage": "-",
+            "role": "maintainer"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Opengento\\Snowflake\\": ""
+        }
+    }
+}
