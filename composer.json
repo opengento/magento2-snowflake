@@ -1,20 +1,64 @@
 {
-  "name": "opengento/snowflake",
-  "version": "1.0.0",
-  "description": "Let It ❄️ ! Let It ❄️ ! Let It ❄️ !",
-  "type": "magento2-module",
-  "require": {
-    "magento/framework": "*"
-  },
-  "license": [
-    "Proprietary"
-  ],
-  "autoload": {
-    "files": [
-      "registration.php"
+    "name": "opengento/module-snowflake",
+    "version": "1.0.0",
+    "description": "Let It ❄️ ! Let It ❄️ ! Let It ❄️ !",
+    "keywords": [
+        "php",
+        "magento",
+        "magento2",
+        "module",
+        "extension",
+        "free",
+        "fun",
+        "snowflakes",
+        "winter"
     ],
-    "psr-4": {
-      "Opengento\\Snowflakes\\": ""
+    "require": {
+        "php": "^7.4||^8.0",
+        "psr/log": "*",
+        "magento/framework": "*",
+        "cmfcmf/openweathermap-php-api": "^3.3"
+    },
+    "require-dev": {
+        "magento/magento-coding-standard": "^5",
+        "magento/marketplace-eqp": "^4.0",
+        "roave/security-advisories": "dev-master"
+    },
+    "type": "magento2-module",
+    "license": [
+        "MIT"
+    ],
+    "homepage": "https://github.com/opengento/magento2-snowflake",
+    "authors": [
+        {
+            "name": "Opengento Team",
+            "email": "opengento@gmail.com",
+            "homepage": "https://opengento.fr/",
+            "role": "lead"
+        },
+        {
+            "name": "Mehdi Chaouch",
+            "email": "mehdi@advocodo.com",
+            "homepage": "https://www.linkedin.com/in/mehdichaouch/",
+            "role": "maintainer"
+        },
+        {
+            "name": "Xavier G",
+            "email": "xavier@bird.eu",
+            "homepage": "https://www.linkedin.com/in/%F0%9F%8E%A9-xavier-guenel-255174198/",
+            "role": "maintainer"
+        }
+    ],
+    "support": {
+        "source": "https://github.com/opengento/magento2-module",
+        "issues": "https://github.com/opengento/magento2-module/issues"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Opengento\\Snowflake\\": ""
+        }
     }
-  }
 }
