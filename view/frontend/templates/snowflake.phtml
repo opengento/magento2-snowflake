@@ -8,89 +8,104 @@
         'jquery/ui',
         'domReady!'
     ], function($) {
-        var snowMax = 35;
-        var snowColor = ["#DDD", "#EEE", "#CCC"];
-        var snowEntity = "<?= $block->getSnowflakeChar(); ?>";//"💸";//"👻";
-        var snowVSpeed = <?= $block->getSnowflakeVSpeed(); ?>;
-        var snowHSpeed = <?= $block->getSnowflakeHSpeed(); ?>;
-        var snowMinSize = 15;
-        var snowMaxSize = 32;
-        var snowRefresh = 50;
-        var snowMaxBlur = 3;
-        var snowStyles = "cursor: default; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; -o-user-select: none; user-select: none;";
 
-        var snow = [],
-            pos = [],
-            coords = [],
-            left = [],
-            marginBottom,
-            marginRight;
+        let isWeatherSnow = true;
+        // Récup Data Weather
+        if (isWeatherSnow) {
+            var snowMax = 55;
+            var snowColor = ["#DDD", "#BBB", "#AAA", "#EEE", "#CCC"];
+            var snowEntity = "<?= $block->getSnowflakeChar(); ?>";
+            var snowVSpeed = -<?= $block->getSnowflakeVSpeed(); ?>;
+            var snowHSpeed = <?= $block->getSnowflakeHSpeed(); ?>;
+            var snowMinSize = 15;
+            var snowMaxSize = 60;
+            var snowRefresh = 50;
+            var snowMaxBlur = 3;
+            var snowStyles = "cursor: default; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; -o-user-select: none; user-select: none;";
 
-        let newPostitions = '';
+            var snow = [],
+                pos = [],
+                coords = [],
+                left = [],
+                marginBottom,
+                marginRight;
 
-        for (let i = 0; i <= snowMax; i++) {
-            newPostitions += ("<span id='flake" + i + "' class='blur'  data-blur='" + snowMaxSize + "'"+
-                " style='" + snowStyles + "position:absolute;top:-" + snowMaxSize + "'>"
-                + snowEntity + "</span>");
-        }
-        $('#snowflake_container').html(newPostitions);
+            let newPostitions = '';
 
-        var snowSize = snowMaxSize - snowMinSize;
-        marginBottom = document.body.scrollHeight - 5;
-        marginRight = document.body.clientWidth - 15;
-
-        for (let i = 0; i <= snowMax; i++) {
-            coords[i] = 0;
-            left[i] = Math.random() * 15;
-            pos[i] = 0.03 + Math.random() / 10;
-            snow[i] = document.getElementById("flake" + i);
-            snow[i].style.fontFamily = "inherit";
-            let size = randomise(snowSize) + snowMinSize;
-            snow[i].size = size;
-            snow[i].style.filter = "blur(" + (snowMaxBlur * ((snowMaxSize - size) / (snowMaxSize - snowMinSize))) + "px)";
-            snow[i].style.fontSize = snow[i].size + "px";
-            snow[i].style.color = snowColor[randomise(snowColor.length)];
-            snow[i].style.zIndex = 1000;
-            snow[i].vsink = snowVSpeed * snow[i].size / 5;
-            snow[i].hsink = snowHSpeed * snow[i].size / 5;
-            snow[i].posX = randomise(marginRight - snow[i].size);
-            snow[i].posY = randomise(2 * marginBottom - marginBottom - 2 * snow[i].size);
-            snow[i].style.left = snow[i].posX + "px";
-            snow[i].style.top = snow[i].posY + "px";
-        }
-
-        function randomise(range) {
-            rand = Math.floor(range * Math.random());
-            return rand;
-        }
-        function resize() {
-            if (snowVSpeed > 0) {
-                marginBottom = document.body.scrollHeight - 5;
-            } else {
-                marginBottom = 10;
-            }
-            marginRight = document.body.clientWidth - 15;
-        }
-
-        function moveSnow() {
             for (let i = 0; i <= snowMax; i++) {
-                coords[i] += pos[i];
-                snow[i].posY += snow[i].vsink;
-                snow[i].posX += snow[i].hsink;
-                snow[i].style.left = snow[i].posX + left[i] * Math.sin(coords[i]) + "px";
-                snow[i].style.top = snow[i].posY + "px";
+                newPostitions += ("<span id='flake" + i + "'" +
+                    " style='" + snowStyles + "position:absolute;top:-" + snowMaxSize + "'>"
+                    + snowEntity + "</span>");
+            }
+            $('#snowflake_container').html(newPostitions);
 
-                if (snowVSpeed > 0 && (snow[i].posY >= marginBottom - 2 * snow[i].size || parseInt(snow[i].style.left) > (marginRight - 3 * left[i]))) {
-                    snow[i].posX = randomise(marginRight - snow[i].size);
-                    snow[i].posY = 0;
+            var snowSize = snowMaxSize - snowMinSize;
+            marginBottom = document.body.scrollHeight - 5;
+            marginRight = document.body.clientWidth - 15;
+
+            for (let i = 0; i <= snowMax; i++) {
+                coords[i] = 0;
+                left[i] = Math.random() * 15;
+                pos[i] = 0.03 + Math.random() / 10;
+                snow[i] = document.getElementById("flake" + i);
+                snow[i].style.fontFamily = "inherit";
+                let size = randomise(snowSize) + snowMinSize;
+                snow[i].size = size;
+                snow[i].style.filter = "blur(" + (snowMaxBlur * ((snowMaxSize - size) / (snowMaxSize - snowMinSize))) / 2 + "px)";
+                snow[i].style.fontSize = snow[i].size + "px";
+                snow[i].style.color = snowColor[randomise(snowColor.length)];
+                snow[i].style.zIndex = 1000;
+                snow[i].style.textShadow = "1px 1px 5px #0000DD55";
+                snow[i].vsink = snowVSpeed * snow[i].size / 5;
+                snow[i].hsink = snowHSpeed * snow[i].size / 5;
+                snow[i].posX = randomise(marginRight - snow[i].size);
+                snow[i].posY = randomise(2 * marginBottom - marginBottom - 2 * snow[i].size);
+                snow[i].style.left = snow[i].posX + "px";
+                snow[i].style.top = snow[i].posY + "px";
+            }
+
+            function randomise(range) {
+                rand = Math.floor(range * Math.random());
+                return rand;
+            }
+
+            function resize() {
+                if (snowVSpeed > 0) {
+                    marginBottom = document.body.scrollHeight - 5;
+                } else {
+                    marginBottom = 10;
                 }
-                if (snowVSpeed < 0 && (snow[i].posY < 0)) {
-                    snow[i].posY = document.body.scrollHeight - snow[i].size - 10;
+                marginRight = document.body.clientWidth - 15;
+            }
+
+            function moveSnow() {
+                for (let i = 0; i <= snowMax; i++) {
+                    coords[i] += pos[i];
+                    snow[i].posY += snow[i].vsink;
+                    snow[i].posX += snow[i].hsink;
+                    snow[i].style.left = snow[i].posX + left[i] * Math.sin(coords[i]) + "px";
+                    snow[i].style.top = snow[i].posY + "px";
+
+                    // if (snowVSpeed > 0 && (snow[i].posY >= marginBottom - 2 * snow[i].size || parseInt(snow[i].style.left) > (marginRight - 3 * left[i]))) {
+                    if (snowVSpeed > 0 && (snow[i].posY >= marginBottom - 2 * snow[i].size)) {
+                        snow[i].posX = randomise(marginRight - snow[i].size);
+                        snow[i].posY = 0;
+                    }
+                    if (snowVSpeed < 0 && (snow[i].posY < 0)) {
+                        snow[i].posY = document.body.scrollHeight - snow[i].size *2;
+                    }
+                    if (snowHSpeed > 0 && (snow[i].posX >= marginRight - 2 * snow[i].size)) {
+                        snow[i].posX = randomise(marginRight - snow[i].size);
+                        snow[i].posY = 0;
+                    }
+                    if (snowHSpeed < 0 && (snow[i].posX < 0)) {
+                        snow[i].posY = document.body.clientWidth - snow[i].size * 2;
+                    }
                 }
             }
-        }
 
-        window.addEventListener('resize', resize);
-        window.setInterval(moveSnow, snowRefresh);
+            window.addEventListener('resize', resize);
+            window.setInterval(moveSnow, snowRefresh);
+        }
     });
 </script>

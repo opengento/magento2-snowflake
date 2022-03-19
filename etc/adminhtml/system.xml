@@ -19,13 +19,13 @@
                 <label>Icon</label>
                 <comment>Icon to display as a snowflake</comment>
             </field>
-            <field id="hspeed" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
-                <label>Speed</label>
-                <comment>Positive value to fall down, negatives values to ascend</comment>
-            </field>
-            <field id="vspeed" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
-                <label>Speed</label>
+            <field id="hspeed" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Horizontal Speed</label>
                 <comment>Positive value to go right, negatives values to go left</comment>
+            </field>
+            <field id="vspeed" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Vertical Speed</label>
+                <comment>Positive value to fall down, negatives values to ascend</comment>
             </field>
         </group>
     </section>
