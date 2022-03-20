@@ -1,6 +1,5 @@
 {
     "name": "opengento/module-snowflake",
-    "version": "1.0.0",
     "description": "Let It ❄️ ! Let It ❄️ ! Let It ❄️ !",
     "keywords": [
         "php",
@@ -11,12 +10,13 @@
         "free",
         "fun",
         "snowflakes",
-        "winter"
+        "winter",
+        "meteo",
+        "openweathermap"
     ],
     "require": {
         "php": "^7.4||^8.0",
-        "psr/log": "*",
-        "magento/framework": "*",
+        "magento/framework": "^103.0",
         "cmfcmf/openweathermap-php-api": "^3.3",
         "http-interop/http-factory-guzzle": "^1.0",
         "php-http/guzzle6-adapter": "^2.0"
@@ -45,15 +45,15 @@
             "role": "maintainer"
         },
         {
-            "name": "Xavier G",
+            "name": "Xavier Guenel",
             "email": "xavier@bird.eu",
             "homepage": "https://www.linkedin.com/in/%F0%9F%8E%A9-xavier-guenel-255174198/",
             "role": "maintainer"
         }
     ],
     "support": {
-        "source": "https://github.com/opengento/magento2-module",
-        "issues": "https://github.com/opengento/magento2-module/issues"
+        "source": "https://github.com/opengento/magento2-snowflake",
+        "issues": "https://github.com/opengento/magento2-snowflake/issues"
     },
     "autoload": {
         "files": [
