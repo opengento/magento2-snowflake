@@ -18,6 +18,7 @@
             <field id="icon" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
                 <label>Icon</label>
                 <comment>Icon to display as a snowflake</comment>
+                <backend_model>Opengento\Snowflake\Model\Config\Backend\EmojiConverter</backend_model>
             </field>
             <field id="hspeed" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
                 <label>Horizontal Speed</label>

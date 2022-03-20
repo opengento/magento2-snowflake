@@ -7,13 +7,13 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
-        <opengento>
-            <snowflake>
+        <snowflake>
+            <general>
                 <enable>0</enable>
-                <icon>❄</icon>
+                <icon backend_model="Opengento\Snowflake\Model\Config\Backend\EmojiConverter">❄</icon>
                 <vspeed>0.75</vspeed>
                 <hspeed>0.75</hspeed>
-            </snowflake>
-        </opengento>
+            </general>
+        </snowflake>
     </default>
 </config>
