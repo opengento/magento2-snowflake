@@ -16,6 +16,7 @@ class Snowflake
     private const CONFIG_PATH_SNOWFLAKE_CHAR  = 'snowflake/general/icon';
     private const CONFIG_PATH_SNOWFLAKE_V_SPEED  = 'snowflake/general/vspeed';
     private const CONFIG_PATH_SNOWFLAKE_H_SPEED  = 'snowflake/general/hspeed';
+    private const CONFIG_PATH_SNOWFLAKE_OPENWEATHERMAP_API_KEY = 'opengento/snowflake/api_key';
 
     private ScopeConfigInterface $scopeConfig;
 
@@ -42,5 +43,14 @@ class Snowflake
     public function getSnowflakeHSpeed(?int $scopeId = null): string
     {
         return $this->scopeConfig->getValue(self::CONFIG_PATH_SNOWFLAKE_H_SPEED, ScopeInterface::SCOPE_STORE, $scopeId) ?? '';
+    }
+  
+    public function getApiKey(?int $scopeId = null): string
+    {
+        return $this->scopeConfig->getValue(
+            self::CONFIG_PATH_SNOWFLAKE_OPENWEATHERMAP_API_KEY,
+            ScopeInterface::SCOPE_STORE,
+            $scopeId
+        );
     }
 }

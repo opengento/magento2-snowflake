@@ -1,4 +1,10 @@
 <?xml version="1.0"?>
+<!--
+/**
+ * Copyright © OpenGento, All rights reserved.
+ * See LICENSE bundled with this library for license details.
+ */
+-->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
 <system>
     <tab id="opengento" translate="label" sortOrder="10">
@@ -29,6 +35,27 @@
                 <comment>Positive value to fall down, negatives values to ascend</comment>
             </field>
         </group>
-    </section>
-</system>
+
+            <group id="api" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label><![CDATA[OpenWeatherMap API]]></label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="api_key" translate="label" type="obscure" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>API Key</label>
+                    <config_path>opengento/snowflake/api_key</config_path>
+                    <!--<backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>-->
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                    <comment>
+                        <![CDATA[⚠️ Configure an OpenWeatherMap account on <a href="https://home.openweathermap.org/users/sign_up" target="_blank">openweathermap.org</a> to get the API Key. You will not be able to use the integration without both the API Key.]]></comment>
+                </field>
+            </group>
+
+        </section>
+    </system>
 </config>
