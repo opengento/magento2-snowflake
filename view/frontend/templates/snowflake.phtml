@@ -34,15 +34,16 @@ declare(strict_types=1);
                 }
             });
         });
-
+        letSnow();
         function letSnow() {
-            var snowMax = 55;
+            var snowMax = <?= $block->getSnowflakeQty(); ?>;
             var snowColor = ["#DDD", "#BBB", "#AAA", "#EEE", "#CCC"];
             var snowEntity = "<?= $block->getSnowflakeChar(); ?>";
-            var snowVSpeed = -<?= $block->getSnowflakeVSpeed(); ?>;
+            var snowVSpeed = <?= $block->getSnowflakeVSpeed(); ?>;
             var snowHSpeed = <?= $block->getSnowflakeHSpeed(); ?>;
-            var snowMinSize = 15;
-            var snowMaxSize = 60;
+            var snowRotSpeed = <?= $block->getSnowflakeRotSpeed(); ?>;
+            var snowMinSize = <?= $block->getSnowflakeMinSize(); ?>;
+            var snowMaxSize = <?= $block->getSnowflakeMaxSize(); ?>;
             var snowRefresh = 50;
             var snowMaxBlur = 3;
             var snowStyles = "cursor: default; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; -o-user-select: none; user-select: none;";
@@ -73,19 +74,29 @@ declare(strict_types=1);
                 pos[i] = 0.03 + Math.random() / 10;
                 snow[i] = document.getElementById("flake" + i);
                 snow[i].style.fontFamily = "inherit";
-                let size = randomise(snowSize) + snowMinSize;
+                let size = randomise(snowSize) + snowMinSize
                 snow[i].size = size;
+                snow[i].speedFactor = snowMaxSize / size / 2;
                 snow[i].style.filter = "blur(" + (snowMaxBlur * ((snowMaxSize - size) / (snowMaxSize - snowMinSize))) / 2 + "px)";
                 snow[i].style.fontSize = snow[i].size + "px";
                 snow[i].style.color = snowColor[randomise(snowColor.length)];
                 snow[i].style.zIndex = 1000;
                 snow[i].style.textShadow = "1px 1px 5px #0000DD55";
+                snow[i].style.transform = "rotate(0deg)";
                 snow[i].vsink = snowVSpeed * snow[i].size / 5;
                 snow[i].hsink = snowHSpeed * snow[i].size / 5;
                 snow[i].posX = randomise(marginRight - snow[i].size);
                 snow[i].posY = randomise(2 * marginBottom - marginBottom - 2 * snow[i].size);
                 snow[i].style.left = snow[i].posX + "px";
                 snow[i].style.top = snow[i].posY + "px";
+
+                snow[i].rotationAngleStep = 0;
+                snow[i].rotationAngActual = 0;
+                if (snowRotSpeed > 0) {
+                    let minimunRotSpeed = 1;
+                    snow[i].rotationAngleStep = Math.floor((snowRotSpeed - minimunRotSpeed) * Math.random()) + minimunRotSpeed * ((i % 2) ? 1 : -1);
+                    snow[i].rotationAngActual = snow[i].rotationAngleStep;
+                }
             }
 
             function randomise(range) {
@@ -106,9 +117,11 @@ declare(strict_types=1);
                 for (let i = 0; i <= snowMax; i++) {
                     coords[i] += pos[i];
                     snow[i].posY += snow[i].vsink;
-                    snow[i].posX += snow[i].hsink;
+                    snow[i].posX += snow[i].hsink * snow[i].speedFactor;
                     snow[i].style.left = snow[i].posX + left[i] * Math.sin(coords[i]) + "px";
                     snow[i].style.top = snow[i].posY + "px";
+                    snow[i].rotationAngActual += snow[i].rotationAngleStep;
+                    snow[i].style.transform = "rotate(" + snow[i].rotationAngActual + "deg)";
 
                     // if (snowVSpeed > 0 && (snow[i].posY >= marginBottom - 2 * snow[i].size || parseInt(snow[i].style.left) > (marginRight - 3 * left[i]))) {
                     if (snowVSpeed > 0 && (snow[i].posY >= marginBottom - 2 * snow[i].size)) {

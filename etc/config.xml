@@ -11,8 +11,12 @@
             <general>
                 <enable>0</enable>
                 <icon backend_model="Opengento\Snowflake\Model\Config\Backend\EmojiConverter">❄</icon>
+                <qty>70</qty>
+                <min_size>8</min_size>
+                <max_size>36</max_size>
                 <vspeed>0.75</vspeed>
                 <hspeed>0.75</hspeed>
+                <rotspeed>6</rotspeed>
             </general>
         </snowflake>
     </default>
