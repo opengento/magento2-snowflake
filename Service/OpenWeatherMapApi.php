@@ -42,6 +42,6 @@ class OpenWeatherMapApi
 
         $weather = $owm->getWeather(['lat' => $lat, 'lon' => $lon], $this->lang, $this->units);
 
-        return $weather->weather->description === 'snow';
+        return 'snow' === $weather->weather->description;
     }
 }
