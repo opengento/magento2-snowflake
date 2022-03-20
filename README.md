@@ -41,9 +41,9 @@ bin/magento setup:upgrade
 
 ## Features
 
-### Country to store mapping
+### Snowflake base on local meteo
 
-Define many countries to many stores relation. This configuration will allows Magento to map stores with countries.
+Do you like the snow? Do you like to feel the same weather on your favorite website? Try this plugin and get the snow along your local meteo!
 
 ## Settings
 
