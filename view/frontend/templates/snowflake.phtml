@@ -1,4 +1,10 @@
 <?php
+/**
+ * Copyright © OpenGento, All rights reserved.
+ * See LICENSE bundled with this library for license details.
+ */
+declare(strict_types=1);
+
 /** @var \Opengento\Snowflake\Block\Snowflake $block */
 ?>
 <div id="snowflake_container"></div>
@@ -8,10 +14,28 @@
         'jquery/ui',
         'domReady!'
     ], function($) {
+        "use strict";
 
-        let isWeatherSnow = true;
-        // Récup Data Weather
-        if (isWeatherSnow) {
+        let settings = {
+            "url": "https://ipinfo.io/json",
+            "method": "GET",
+            "timeout": 0
+        };
+
+        let lat, lon;
+        $.ajax(settings).done(function (response) {
+            [lat, lon] = response.loc.split(',');
+            $.ajax({
+                url: '<?php echo $block->getUrl($block->getAjaxUrl()) ?>lat/' + lat + '/lon/' + lon,
+                type: "POST",
+            }).done(function (data) {
+                if (data.is_snowing) {
+                    letSnow();
+                }
+            });
+        });
+
+        function letSnow() {
             var snowMax = 55;
             var snowColor = ["#DDD", "#BBB", "#AAA", "#EEE", "#CCC"];
             var snowEntity = "<?= $block->getSnowflakeChar(); ?>";
@@ -65,7 +89,7 @@
             }
 
             function randomise(range) {
-                rand = Math.floor(range * Math.random());
+                let rand = Math.floor(range * Math.random());
                 return rand;
             }
 

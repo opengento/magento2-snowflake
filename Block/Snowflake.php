@@ -9,6 +9,8 @@ use Opengento\Snowflake\Model\Config\Snowflake as SnowflakeConfig;
 
 class Snowflake extends Template
 {
+    public const AJAX_URL = 'opengento_snowflake/index/meteo';
+
     protected ScopeConfigInterface $snowflakeConfig;
     protected SnowflakeConfig $config;
 
@@ -23,7 +25,7 @@ class Snowflake extends Template
         parent::__construct($context, $data);
     }
 
-    public function getSnowflakeChar() : string
+    public function getSnowflakeChar(): string
     {
         return $this->SnowflakeConfig->getSnowflakeChar();
     }
@@ -36,5 +38,10 @@ class Snowflake extends Template
     public function getSnowflakeHSpeed() : string
     {
         return $this->SnowflakeConfig->getSnowflakeHSpeed();
+    }
+
+    public function getAjaxUrl(): string
+    {
+        return static::AJAX_URL;
     }
 }
