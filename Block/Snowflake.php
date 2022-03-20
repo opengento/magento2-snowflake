@@ -1,4 +1,8 @@
 <?php
+/**
+ * Copyright © OpenGento, All rights reserved.
+ * See LICENSE bundled with this library for license details.
+ */
 declare(strict_types=1);
 
 namespace Opengento\Snowflake\Block;
@@ -9,62 +13,65 @@ use Opengento\Snowflake\Model\Config\Snowflake as SnowflakeConfig;
 
 class Snowflake extends Template
 {
-    protected ScopeConfigInterface $snowflakeConfig;
-    protected SnowflakeConfig $config;
+    protected SnowflakeConfig $snowflakeConfig;
+    protected ScopeConfigInterface $scopeConfig;
 
     public function __construct(
-        ScopeConfigInterface $scopeConfig,
-        SnowflakeConfig $snowflakeConfig,
         Template\Context $context,
+        SnowflakeConfig $snowflakeConfig,
         array $data = []
     ) {
-        $this->SnowflakeConfig = $snowflakeConfig;
-        $this->scopeConfig = $scopeConfig;
+        $this->snowflakeConfig = $snowflakeConfig;
         parent::__construct($context, $data);
     }
 
     public function getSnowflakeChar(): string
     {
-        return $this->SnowflakeConfig->getSnowflakeChar();
+        return $this->snowflakeConfig->getSnowflakeChar();
     }
 
-    public function getSnowflakeVSpeed() : string
+    public function getSnowflakeVSpeed(): string
     {
-        return $this->SnowflakeConfig->getSnowflakeVSpeed();
+        return $this->snowflakeConfig->getSnowflakeVSpeed();
     }
 
-    public function getSnowflakeHSpeed() : string
+    public function getSnowflakeHSpeed(): string
     {
-        return $this->SnowflakeConfig->getSnowflakeHSpeed();
+        return $this->snowflakeConfig->getSnowflakeHSpeed();
     }
 
-    public function getSnowflakeRotSpeed() : string
+    public function getSnowflakeRotSpeed(): string
     {
-        return $this->SnowflakeConfig->getSnowflakeRotSpeed();
+        return $this->snowflakeConfig->getSnowflakeRotSpeed();
     }
 
-    public function getSnowflakeQty() : int
+    public function getSnowflakeQty(): int
     {
-        return (int)$this->SnowflakeConfig->getSnowflakeQty();
+        return (int)$this->snowflakeConfig->getSnowflakeQty();
     }
 
-    public function getSnowflakeMinSize() : int
+    public function getSnowflakeMinSize(): int
     {
-        return (int)$this->SnowflakeConfig->getSnowflakeMinSize();
+        return (int)$this->snowflakeConfig->getSnowflakeMinSize();
     }
 
-    public function getSnowflakeMaxSize() : int
+    public function getSnowflakeMaxSize(): int
     {
-        return (int)$this->SnowflakeConfig->getSnowflakeMaxSize();
+        return (int)$this->snowflakeConfig->getSnowflakeMaxSize();
     }
 
-    public function getSnowflakeForce() : string
+    public function isForceSnow(): bool
     {
-        return $this->SnowflakeConfig->getSnowflakeForce();
+        return $this->snowflakeConfig->isForceSnow();
+    }
+
+    public function isApiEnable(): bool
+    {
+        return $this->snowflakeConfig->isApiEnable();
     }
 
     public function getAjaxUrl(): string
     {
-        return $this->SnowflakeConfig->getAjaxUrl();
+        return $this->snowflakeConfig->getAjaxUrl();
     }
 }

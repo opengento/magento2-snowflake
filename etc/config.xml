@@ -10,7 +10,7 @@
         <snowflake>
             <general>
                 <enable>0</enable>
-                <icon backend_model="Opengento\Snowflake\Model\Config\Backend\EmojiConverter">❄</icon>
+                <icon backend_model="Opengento\Snowflake\Model\Config\Backend\EmojiConverter">sss</icon>
                 <qty>70</qty>
                 <min_size>8</min_size>
                 <max_size>36</max_size>
