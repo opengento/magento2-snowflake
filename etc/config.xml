@@ -17,7 +17,11 @@
                 <vspeed>0.75</vspeed>
                 <hspeed>0.75</hspeed>
                 <rotspeed>6</rotspeed>
+                <rotspeed>6</rotspeed>
             </general>
+            <api>
+                <force>0</force>
+            </api>
         </snowflake>
     </default>
 </config>

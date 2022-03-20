@@ -29,7 +29,7 @@
                     <field id="enable">1</field>
                 </depends>
             </field>
-            <field id="qty" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+            <field id="qty" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
                 <label>Quantity</label>
                 <comment>Quantity of icons displayed</comment>
                 <validate>validate-digits</validate>
@@ -37,7 +37,7 @@
                     <field id="enable">1</field>
                 </depends>
             </field>
-            <field id="min_size" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+            <field id="min_size" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="0" showInStore="0">
                 <label>Minimum size</label>
                 <comment>Minimum size of icon in pixels</comment>
                 <validate>validate-digits</validate>
@@ -45,7 +45,7 @@
                     <field id="enable">1</field>
                 </depends>
             </field>
-            <field id="max_size" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+            <field id="max_size" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="0" showInStore="0">
                 <label>Maximum size</label>
                 <comment>Maximum size of icon in pixels</comment>
                 <validate>validate-digits</validate>
@@ -92,6 +92,11 @@
                     </depends>
                     <comment>
                         <![CDATA[⚠️ Configure an OpenWeatherMap account on <a href="https://home.openweathermap.org/users/sign_up" target="_blank">openweathermap.org</a> to get the API Key. You will not be able to use the integration without both the API Key.]]></comment>
+                </field>
+                <field id="force" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Force Display</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Display snow whatever is the weather</comment>
                 </field>
             </group>
 

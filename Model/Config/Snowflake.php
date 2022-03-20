@@ -23,6 +23,7 @@ class Snowflake
     private const CONFIG_PATH_SNOWFLAKE_MIN_SIZE = 'snowflake/general/max_size';
     private const CONFIG_PATH_SNOWFLAKE_MAX_SIZE = 'snowflake/general/min_size';
     private const CONFIG_PATH_SNOWFLAKE_QTY = 'snowflake/general/qty';
+    private const CONFIG_PATH_SNOWFLAKE_FORCE = 'snowflake/api/force';
 
     private ScopeConfigInterface $scopeConfig;
 
@@ -69,6 +70,11 @@ class Snowflake
     public function getSnowflakeMaxSize(?int $scopeId = null): string
     {
         return $this->scopeConfig->getValue(self::CONFIG_PATH_SNOWFLAKE_MAX_SIZE, ScopeInterface::SCOPE_STORE, $scopeId) ?? '';
+    }
+
+    public function getSnowflakeForce(?int $scopeId = null): string
+    {
+        return (string)$this->scopeConfig->getValue(self::CONFIG_PATH_SNOWFLAKE_FORCE, ScopeInterface::SCOPE_STORE, $scopeId);
     }
 
     public function getApiKey(?int $scopeId = null): string

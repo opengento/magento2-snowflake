@@ -23,18 +23,22 @@ declare(strict_types=1);
         };
 
         let lat, lon;
-        $.ajax(settings).done(function (response) {
-            [lat, lon] = response.loc.split(',');
-            $.ajax({
-                url: '<?php echo $block->getUrl($block->getAjaxUrl()) ?>lat/' + lat + '/lon/' + lon,
-                type: "POST",
-            }).done(function (data) {
-                if (data.is_snowing) {
-                    letSnow();
-                }
+        if (!<?= (string)$block->getSnowflakeForce() ?>) {
+            $.ajax(settings).done(function (response) {
+                [lat, lon] = response.loc.split(',');
+                $.ajax({
+                    url: '<?php echo $block->getUrl($block->getAjaxUrl()) ?>lat/' + lat + '/lon/' + lon,
+                    type: "POST",
+                }).done(function (data) {
+                    if (data.is_snowing) {
+                        letSnow();
+                    }
+                });
             });
-        });
-        letSnow();
+        } else {
+            letSnow();
+        }
+
         function letSnow() {
             var snowMax = <?= $block->getSnowflakeQty(); ?>;
             var snowColor = ["#DDD", "#BBB", "#AAA", "#EEE", "#CCC"];

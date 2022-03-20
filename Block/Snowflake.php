@@ -58,6 +58,11 @@ class Snowflake extends Template
         return (int)$this->SnowflakeConfig->getSnowflakeMaxSize();
     }
 
+    public function getSnowflakeForce() : string
+    {
+        return $this->SnowflakeConfig->getSnowflakeForce();
+    }
+
     public function getAjaxUrl(): string
     {
         return $this->SnowflakeConfig->getAjaxUrl();
