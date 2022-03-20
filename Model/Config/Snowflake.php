@@ -12,18 +12,19 @@ use Magento\Store\Model\ScopeInterface;
 
 class Snowflake
 {
-    public const AJAX_URL = 'opengento_snowflake/index/meteo';
+    public const AJAX_URL = 'opengento_snowflake/api/meteo';
 
-    private const CONFIG_PATH_SNOWFLAKE_ENABLE = 'opengento/snowflake/enable';
+    private const CONFIG_PATH_SNOWFLAKE_ENABLE = 'snowflake/general/enable';
     private const CONFIG_PATH_SNOWFLAKE_CHAR  = 'snowflake/general/icon';
     private const CONFIG_PATH_SNOWFLAKE_V_SPEED  = 'snowflake/general/vspeed';
     private const CONFIG_PATH_SNOWFLAKE_H_SPEED  = 'snowflake/general/hspeed';
     private const CONFIG_PATH_SNOWFLAKE_ROT_SPEED  = 'snowflake/general/rotspeed';
-    private const CONFIG_PATH_SNOWFLAKE_OPENWEATHERMAP_API_KEY = 'opengento/snowflake/api_key';
+    private const CONFIG_PATH_SNOWFLAKE_OPENWEATHERMAP_ENABLE = 'snowflake/general/enable_api';
+    private const CONFIG_PATH_SNOWFLAKE_OPENWEATHERMAP_API_KEY = 'snowflake/general/api_key';
     private const CONFIG_PATH_SNOWFLAKE_MIN_SIZE = 'snowflake/general/max_size';
     private const CONFIG_PATH_SNOWFLAKE_MAX_SIZE = 'snowflake/general/min_size';
     private const CONFIG_PATH_SNOWFLAKE_QTY = 'snowflake/general/qty';
-    private const CONFIG_PATH_SNOWFLAKE_FORCE = 'snowflake/api/force';
+    private const CONFIG_PATH_SNOWFLAKE_FORCE = 'snowflake/general/force';
 
     private ScopeConfigInterface $scopeConfig;
 
@@ -72,9 +73,18 @@ class Snowflake
         return $this->scopeConfig->getValue(self::CONFIG_PATH_SNOWFLAKE_MAX_SIZE, ScopeInterface::SCOPE_STORE, $scopeId) ?? '';
     }
 
-    public function getSnowflakeForce(?int $scopeId = null): string
+    public function isForceSnow(?int $scopeId = null): bool
     {
-        return (string)$this->scopeConfig->getValue(self::CONFIG_PATH_SNOWFLAKE_FORCE, ScopeInterface::SCOPE_STORE, $scopeId);
+        return $this->scopeConfig->isSetFlag(self::CONFIG_PATH_SNOWFLAKE_FORCE, ScopeInterface::SCOPE_STORE, $scopeId);
+    }
+
+    public function isApiEnable(?int $scopeId = null): bool
+    {
+        return $this->scopeConfig->isSetFlag(
+            self::CONFIG_PATH_SNOWFLAKE_OPENWEATHERMAP_ENABLE,
+            ScopeInterface::SCOPE_STORE,
+            $scopeId
+        );
     }
 
     public function getApiKey(?int $scopeId = null): string

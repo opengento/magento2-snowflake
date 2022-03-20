@@ -22,12 +22,17 @@ declare(strict_types=1);
             "timeout": 0
         };
 
-        let lat, lon;
-        if (!<?= (string)$block->getSnowflakeForce() ?>) {
+        // Force Snowflake
+        if (<?= (int)$block->isForceSnow() ?>) {
+            letSnow();
+
+        // Api Enable
+        } else if (<?= (int)$block->isApiEnable() ?>) {
+            let lat, lon;
             $.ajax(settings).done(function (response) {
                 [lat, lon] = response.loc.split(',');
                 $.ajax({
-                    url: '<?php echo $block->getUrl($block->getAjaxUrl()) ?>lat/' + lat + '/lon/' + lon,
+                    url: '<?= $block->getUrl($block->getAjaxUrl()) ?>lat/' + lat + '/lon/' + lon,
                     type: "POST",
                 }).done(function (data) {
                     if (data.is_snowing) {
@@ -35,40 +40,38 @@ declare(strict_types=1);
                     }
                 });
             });
-        } else {
-            letSnow();
         }
 
         function letSnow() {
-            var snowMax = <?= $block->getSnowflakeQty(); ?>;
-            var snowColor = ["#DDD", "#BBB", "#AAA", "#EEE", "#CCC"];
-            var snowEntity = "<?= $block->getSnowflakeChar(); ?>";
-            var snowVSpeed = <?= $block->getSnowflakeVSpeed(); ?>;
-            var snowHSpeed = <?= $block->getSnowflakeHSpeed(); ?>;
-            var snowRotSpeed = <?= $block->getSnowflakeRotSpeed(); ?>;
-            var snowMinSize = <?= $block->getSnowflakeMinSize(); ?>;
-            var snowMaxSize = <?= $block->getSnowflakeMaxSize(); ?>;
-            var snowRefresh = 50;
-            var snowMaxBlur = 3;
-            var snowStyles = "cursor: default; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; -o-user-select: none; user-select: none;";
+            let snowMax = <?= $block->getSnowflakeQty(); ?>;
+            let snowColor = ["#DDD", "#BBB", "#AAA", "#EEE", "#CCC"];
+            let snowEntity = "<?= $block->getSnowflakeChar(); ?>";
+            let snowVSpeed = <?= $block->getSnowflakeVSpeed(); ?>;
+            let snowHSpeed = <?= $block->getSnowflakeHSpeed(); ?>;
+            let snowRotSpeed = <?= $block->getSnowflakeRotSpeed(); ?>;
+            let snowMinSize = <?= $block->getSnowflakeMinSize(); ?>;
+            const snowMaxSize = <?= $block->getSnowflakeMaxSize(); ?>;
+            const snowRefresh = 50;
+            const snowMaxBlur = 3;
+            const snowStyles = "cursor: default; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; -o-user-select: none; user-select: none;";
 
-            var snow = [],
+            let snow = [],
                 pos = [],
                 coords = [],
                 left = [],
                 marginBottom,
                 marginRight;
 
-            let newPostitions = '';
+            let newPositions = '';
 
             for (let i = 0; i <= snowMax; i++) {
-                newPostitions += ("<span id='flake" + i + "'" +
+                newPositions += ("<span id='flake" + i + "'" +
                     " style='" + snowStyles + "position:absolute;top:-" + snowMaxSize + "'>"
                     + snowEntity + "</span>");
             }
-            $('#snowflake_container').html(newPostitions);
+            $('#snowflake_container').html(newPositions);
 
-            var snowSize = snowMaxSize - snowMinSize;
+            let snowSize = snowMaxSize - snowMinSize;
             marginBottom = document.body.scrollHeight - 5;
             marginRight = document.body.clientWidth - 15;
 
@@ -97,15 +100,14 @@ declare(strict_types=1);
                 snow[i].rotationAngleStep = 0;
                 snow[i].rotationAngActual = 0;
                 if (snowRotSpeed > 0) {
-                    let minimunRotSpeed = 1;
-                    snow[i].rotationAngleStep = Math.floor((snowRotSpeed - minimunRotSpeed) * Math.random()) + minimunRotSpeed * ((i % 2) ? 1 : -1);
+                    let minimumRotSpeed = 1;
+                    snow[i].rotationAngleStep = Math.floor((snowRotSpeed - minimumRotSpeed) * Math.random()) + minimumRotSpeed * ((i % 2) ? 1 : -1);
                     snow[i].rotationAngActual = snow[i].rotationAngleStep;
                 }
             }
 
             function randomise(range) {
-                let rand = Math.floor(range * Math.random());
-                return rand;
+                return Math.floor(range * Math.random());
             }
 
             function resize() {

@@ -1,11 +1,16 @@
 <?php
-declare(strict_types = 1);
+/**
+ * Copyright © OpenGento, All rights reserved.
+ * See LICENSE bundled with this library for license details.
+ */
+declare(strict_types=1);
 
 namespace Opengento\Snowflake\Model\Config\Backend;
 
-use Magento\Config\Model\Config\Backend\Serialized\ArraySerialized;
+use Magento\Framework\App\Config\Data\ProcessorInterface;
+use Magento\Framework\App\Config\Value;
 
-class EmojiConverter extends \Magento\Framework\App\Config\Value  implements \Magento\Framework\App\Config\Data\ProcessorInterface
+class EmojiConverter extends Value implements ProcessorInterface
 {
     /**
      * Unset array element with '__empty' key

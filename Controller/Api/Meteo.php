@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace Opengento\Snowflake\Controller\Index;
+namespace Opengento\Snowflake\Controller\Api;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
@@ -32,11 +32,15 @@ class Meteo extends Action
      */
     public function execute()
     {
-        $lat = $this->getRequest()->getParam('lat');
-        $lon = $this->getRequest()->getParam('lon');
+        $isSnowing = ['is_snowing' => '0'];
 
-        return $this->resultJsonFactory->create()->setData(
-            ['is_snowing' => $this->api->isSnowing($lat, $lon)]
-        );
+        $lat = $this->getRequest()->getParam('lat') ?? '';
+        $lon = $this->getRequest()->getParam('lon') ?? '';
+
+        if ($lat && $lon) {
+            $isSnowing = ['is_snowing' => $this->api->isSnowing($lat, $lon)];
+        }
+
+        return $this->resultJsonFactory->create()->setData($isSnowing);
     }
 }

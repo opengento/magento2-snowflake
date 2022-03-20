@@ -14,6 +14,10 @@ use Opengento\Snowflake\Model\Config\Snowflake;
 
 class OpenWeatherMapApi
 {
+    // Manage all Group 6xx: Snow
+    // https://openweathermap.org/weather-conditions
+    public const WEATHER_CONDITION = 'snow';
+
     // Language of data (try your own language here!):
     protected string $lang = 'en';
 
@@ -31,7 +35,7 @@ class OpenWeatherMapApi
     /**
      * @throws OpenWeatherMap\Exception
      */
-    public function isSnowing($lat, $lon): bool
+    public function isSnowing(string $lat, string $lon): bool
     {
         $apiKey = $this->config->getApiKey();
 
@@ -42,6 +46,6 @@ class OpenWeatherMapApi
 
         $weather = $owm->getWeather(['lat' => $lat, 'lon' => $lon], $this->lang, $this->units);
 
-        return 'snow' === $weather->weather->description;
+        return static::WEATHER_CONDITION === $weather->weather->description;
     }
 }
