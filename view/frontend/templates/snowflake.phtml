@@ -5,34 +5,35 @@
  */
 declare(strict_types=1);
 
-/** @var \Opengento\Snowflake\Block\Snowflake $block */
+use Magento\Framework\View\Element\Template;
+use Opengento\Snowflake\ViewModel\Snowflake;
+
+/** @var Template $block */
+/** @var Snowflake $viewModel */
+$viewModel = $block->getData('viewModel');
 ?>
 <div id="snowflake_container"></div>
 
 <script>
-    require(['jquery',
+    require([
+        'jquery',
         'jquery/ui',
         'domReady!'
     ], function($) {
         "use strict";
 
-        let settings = {
-            "url": "https://ipinfo.io/json",
-            "method": "GET",
-            "timeout": 0
-        };
-
-        // Force Snowflake
-        if (<?= (int)$block->isForceSnow() ?>) {
+        <?php if ($viewModel->isForceSnow()): ?>
             letSnow();
-
-        // Api Enable
-        } else if (<?= (int)$block->isApiEnable() ?>) {
-            let lat, lon;
+        <?php elseif ($viewModel->isApiEnabled()): ?>
+            let lat, lon, settings = {
+                "url": "<?= $viewModel->getIpLocatorApiUrl() ?>",
+                "method": "GET",
+                "timeout": 0
+            };
             $.ajax(settings).done(function (response) {
                 [lat, lon] = response.loc.split(',');
                 $.ajax({
-                    url: '<?= $block->getUrl($block->getAjaxUrl()) ?>lat/' + lat + '/lon/' + lon,
+                    url: '<?= $block->getData('meteoUrl') ?>lat/' + lat + '/lon/' + lon,
                     type: "POST",
                 }).done(function (data) {
                     if (data.is_snowing) {
@@ -40,17 +41,17 @@ declare(strict_types=1);
                     }
                 });
             });
-        }
+        <?php endif; ?>
 
         function letSnow() {
-            let snowMax = <?= $block->getSnowflakeQty(); ?>;
+            let snowMax = <?= $viewModel->getSnowflakeQty() ?>;
             let snowColor = ["#DDD", "#BBB", "#AAA", "#EEE", "#CCC"];
-            let snowEntity = "<?= $block->getSnowflakeChar(); ?>";
-            let snowVSpeed = <?= $block->getSnowflakeVSpeed(); ?>;
-            let snowHSpeed = <?= $block->getSnowflakeHSpeed(); ?>;
-            let snowRotSpeed = <?= $block->getSnowflakeRotSpeed(); ?>;
-            let snowMinSize = <?= $block->getSnowflakeMinSize(); ?>;
-            const snowMaxSize = <?= $block->getSnowflakeMaxSize(); ?>;
+            let snowEntity = "<?= $viewModel->getSnowflakeChar() ?>";
+            let snowVSpeed = <?= $viewModel->getSnowflakeVSpeed() ?>;
+            let snowHSpeed = <?= $viewModel->getSnowflakeHSpeed() ?>;
+            let snowRotSpeed = <?= $viewModel->getSnowflakeRotSpeed() ?>;
+            let snowMinSize = <?= $viewModel->getSnowflakeMinSize() ?>;
+            const snowMaxSize = <?= $viewModel->getSnowflakeMaxSize() ?>;
             const snowRefresh = 50;
             const snowMaxBlur = 3;
             const snowStyles = "cursor: default; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; -o-user-select: none; user-select: none;";

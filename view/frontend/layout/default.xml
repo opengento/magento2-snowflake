@@ -11,6 +11,7 @@
             <block name="opengento.snowflake.script" template="Opengento_Snowflake::snowflake.phtml" ifconfig="snowflake/general/enable">
                 <arguments>
                     <argument name="viewModel" xsi:type="object">Opengento\Snowflake\ViewModel\Snowflake</argument>
+                    <argument name="meteoUrl" xsi:type="url" path="opengento_snowflake/api/meteo"/>
                 </arguments>
             </block>
         </referenceContainer>
