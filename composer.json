@@ -65,5 +65,8 @@
         "psr-4": {
             "Opengento\\Snowflake\\": ""
         }
+    },
+    "archive": {
+        "exclude": ["/doc"]
     }
 }

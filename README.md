@@ -41,6 +41,8 @@ bin/magento setup:upgrade
 
 ## Features
 
+![Let it snow!](doc/snowflake.png)
+
 ### Snowflake base on local meteo
 
 Do you like the snow? Do you like to feel the same weather on your favorite website? Try this plugin and get the snow along your local meteo!
@@ -58,6 +60,10 @@ You don't like snow, no problem, Snowflake can make it rain [cookies](https://tw
 ## Settings
 
 The configuration for this module is available in `Stores > Configuration > General > ❄️ Snowflake`.
+
+![General Config](doc/config1.png)
+
+![Openweather Config](doc/config2.png)
 
 ## Support
 
