@@ -15,7 +15,7 @@ use Magento\Store\Model\ScopeInterface;
  */
 final class OpenWeather
 {
-    private const CONFIG_PATH_SNOWFLAKE_OPENWEATHERMAP_ENABLED = 'snowflake/api/enable_api';
+    private const CONFIG_PATH_SNOWFLAKE_OPENWEATHERMAP_ENABLED = 'snowflake/api/enable';
     private const CONFIG_PATH_SNOWFLAKE_OPENWEATHERMAP_API_KEY = 'snowflake/api/api_key';
     private const CONFIG_PATH_SNOWFLAKE_IP_LOCATOR_API_URL = 'snowflake/api/ip_info_api_url';
 

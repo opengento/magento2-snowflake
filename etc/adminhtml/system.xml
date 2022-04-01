@@ -21,16 +21,16 @@
                 </field>
                 <field id="icon" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Icon</label>
-                    <comment>Icon to display as a snowflake `❄`️.</comment>
+                    <comment><![CDATA[Icon to display as a snowflake ❄️, get <a href="https://emojipedia.org/" target="_blank">more emoji</a>.]]></comment>
                     <backend_model>Opengento\Snowflake\Model\Config\Backend\EmojiConverter</backend_model>
                     <depends>
                         <field id="snowflake/general/enable">1</field>
                     </depends>
                 </field>
-                <field id="force" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="force" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Force Display</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment>⚠️ Display snow whatever is the weather (this makes OpenWeatherMap API useless).</comment>
+                    <comment><![CDATA[⚠️ Display snow whatever is the weather (this makes OpenWeatherMap API useless).]]></comment>
                     <depends>
                         <field id="snowflake/general/enable">1</field>
                     </depends>
@@ -84,7 +84,7 @@
             <group id="api" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label><![CDATA[OpenWeatherMap API]]></label>
                 <comment><![CDATA[This setting is bypassed if you enable <b>Force Display</b>.]]></comment>
-                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Status</label>
                     <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
                     <depends>

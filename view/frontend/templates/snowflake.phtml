@@ -34,7 +34,7 @@ $viewModel = $block->getData('viewModel');
                 [lat, lon] = response.loc.split(',');
                 $.ajax({
                     url: '<?= $block->getData('meteoUrl') ?>lat/' + lat + '/lon/' + lon,
-                    type: "POST",
+                    type: "GET",
                 }).done(function (data) {
                     if (data.is_snowing) {
                         letSnow();
