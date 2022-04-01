@@ -1,0 +1,18 @@
+"Snowflake Meteo","Snowflake Meteo"
+"❄️ Snowflake","❄️ Snowflake"
+"General Configuration","General Configuration"
+Status,Status
+Icon,Icon
+"Icon to display as a snowflake ❄️, get <a href=""https://emojipedia.org/"" target=""_blank"">more emoji</a>.","Icon to display as a snowflake ❄️, get <a href=""https://emojipedia.org/"" target=""_blank"">more emoji</a>."
+"Force Display","Force Display"
+"⚠️ Display snow whatever is the weather (this makes OpenWeatherMap API useless).","⚠️ Display snow whatever is the weather (this makes OpenWeatherMap API useless)."
+Quantity,Quantity
+"Quantity of icons displayed.","Quantity of icons displayed."
+"Minimum size","Minimum size"
+"Maximum size","Maximum size"
+"Horizontal Speed","Horizontal Speed"
+"Vertical Speed","Vertical Speed"
+"Rotation Speed","Rotation Speed"
+"OpenWeatherMap API","OpenWeatherMap API"
+"API Key","API Key"
+"⚠️ Configure an OpenWeatherMap account on <a href=""https://home.openweathermap.org/users/sign_up"" target=""_blank"">openweathermap.org</a> to get the API Key. You will not be able to use the integration without the API Key.","⚠️ Configure an OpenWeatherMap account on <a href=""https://home.openweathermap.org/users/sign_up"" target=""_blank"">openweathermap.org</a> to get the API Key. You will not be able to use the integration without the API Key."

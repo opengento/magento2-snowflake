@@ -12,19 +12,15 @@ use Magento\Framework\App\Config\Value;
 
 class EmojiConverter extends Value implements ProcessorInterface
 {
-    /**
-     * Unset array element with '__empty' key
-     *
-     * @return $this
-     */
-    public function beforeSave()
+    public function beforeSave(): self
     {
         $this->setValue(json_encode($this->getValue()));
+
         return parent::beforeSave();
     }
 
-    public function processValue($value)
+    public function processValue($value): string
     {
-        return json_decode($value);
+        return (string)json_decode($value);
     }
 }

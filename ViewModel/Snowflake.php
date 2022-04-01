@@ -5,24 +5,24 @@
  */
 declare(strict_types=1);
 
-namespace Opengento\Snowflake\Block;
+namespace Opengento\Snowflake\ViewModel;
 
-use Magento\Framework\View\Element\Template;
-use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\View\Element\Block\ArgumentInterface;
+use Opengento\Snowflake\Model\Config\OpenWeather as OpenWeatherConfig;
 use Opengento\Snowflake\Model\Config\Snowflake as SnowflakeConfig;
 
-class Snowflake extends Template
+final class Snowflake implements ArgumentInterface
 {
-    protected SnowflakeConfig $snowflakeConfig;
-    protected ScopeConfigInterface $scopeConfig;
+    private SnowflakeConfig $snowflakeConfig;
+
+    private OpenWeatherConfig $openWeatherConfig;
 
     public function __construct(
-        Template\Context $context,
         SnowflakeConfig $snowflakeConfig,
-        array $data = []
+        OpenWeatherConfig $openWeatherConfig
     ) {
         $this->snowflakeConfig = $snowflakeConfig;
-        parent::__construct($context, $data);
+        $this->openWeatherConfig = $openWeatherConfig;
     }
 
     public function getSnowflakeChar(): string
@@ -30,34 +30,34 @@ class Snowflake extends Template
         return $this->snowflakeConfig->getSnowflakeChar();
     }
 
-    public function getSnowflakeVSpeed(): string
+    public function getSnowflakeVSpeed(): float
     {
         return $this->snowflakeConfig->getSnowflakeVSpeed();
     }
 
-    public function getSnowflakeHSpeed(): string
+    public function getSnowflakeHSpeed(): float
     {
         return $this->snowflakeConfig->getSnowflakeHSpeed();
     }
 
-    public function getSnowflakeRotSpeed(): string
+    public function getSnowflakeRotSpeed(): int
     {
         return $this->snowflakeConfig->getSnowflakeRotSpeed();
     }
 
     public function getSnowflakeQty(): int
     {
-        return (int)$this->snowflakeConfig->getSnowflakeQty();
+        return $this->snowflakeConfig->getSnowflakeQty();
     }
 
     public function getSnowflakeMinSize(): int
     {
-        return (int)$this->snowflakeConfig->getSnowflakeMinSize();
+        return $this->snowflakeConfig->getSnowflakeMinSize();
     }
 
     public function getSnowflakeMaxSize(): int
     {
-        return (int)$this->snowflakeConfig->getSnowflakeMaxSize();
+        return $this->snowflakeConfig->getSnowflakeMaxSize();
     }
 
     public function isForceSnow(): bool
@@ -65,13 +65,13 @@ class Snowflake extends Template
         return $this->snowflakeConfig->isForceSnow();
     }
 
-    public function isApiEnable(): bool
+    public function isApiEnabled(): bool
     {
-        return $this->snowflakeConfig->isApiEnable();
+        return $this->openWeatherConfig->isEnabled();
     }
 
-    public function getAjaxUrl(): string
+    public function getIpLocatorApiUrl(): string
     {
-        return $this->snowflakeConfig->getAjaxUrl();
+        return $this->openWeatherConfig->getIpLocatorApiUrl();
     }
 }

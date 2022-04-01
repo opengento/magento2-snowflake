@@ -7,39 +7,35 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <tab id="general" translate="label" sortOrder="100">
-            <label>General</label>
-        </tab>
         <section id="snowflake" translate="label" sortOrder="2022" showInDefault="1" showInWebsite="1" showInStore="1">
             <class>separator-top</class>
             <label>❄️ Snowflake</label>
             <tab>general</tab>
             <resource>Opengento_Snowflake::config</resource>
-            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>General Configuration</label>
-                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
-                    <label>Enable</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Status</label>
                     <config_path>snowflake/general/enable</config_path>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
                 </field>
-                <field id="icon" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="icon" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Icon</label>
-                    <comment>Icon to display as a snowflake ❄️.</comment>
+                    <comment><![CDATA[Icon to display as a snowflake ❄️, get <a href="https://emojipedia.org/" target="_blank">more emoji</a>.]]></comment>
                     <backend_model>Opengento\Snowflake\Model\Config\Backend\EmojiConverter</backend_model>
                     <depends>
                         <field id="snowflake/general/enable">1</field>
                     </depends>
                 </field>
-                <field id="force" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="force" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Force Display</label>
-                    <config_path>snowflake/general/force</config_path>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment>⚠️ Display snow whatever is the weather (this makes OpenWeatherMap API useless).</comment>
+                    <comment><![CDATA[⚠️ Display snow whatever is the weather (this makes OpenWeatherMap API useless).]]></comment>
                     <depends>
                         <field id="snowflake/general/enable">1</field>
                     </depends>
                 </field>
-                <field id="qty" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="qty" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Quantity</label>
                     <comment>Quantity of icons displayed.</comment>
                     <validate>validate-digits</validate>
@@ -47,7 +43,7 @@
                         <field id="snowflake/general/enable">1</field>
                     </depends>
                 </field>
-                <field id="min_size" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="min_size" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Minimum size</label>
                     <comment>Minimum size of icon in pixels.</comment>
                     <validate>validate-digits</validate>
@@ -55,7 +51,7 @@
                         <field id="snowflake/general/enable">1</field>
                     </depends>
                 </field>
-                <field id="max_size" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="max_size" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Maximum size</label>
                     <comment>Maximum size of icon in pixels.</comment>
                     <validate>validate-digits</validate>
@@ -63,21 +59,21 @@
                         <field id="snowflake/general/enable">1</field>
                     </depends>
                 </field>
-                <field id="hspeed" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="hspeed" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Horizontal Speed</label>
                     <comment>Positive value to go right, negatives values to go left.</comment>
                     <depends>
                         <field id="snowflake/general/enable">1</field>
                     </depends>
                 </field>
-                <field id="vspeed" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="vspeed" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Vertical Speed</label>
                     <comment>Positive value to fall down, negatives values to ascend.</comment>
                     <depends>
                         <field id="snowflake/general/enable">1</field>
                     </depends>
                 </field>
-                <field id="rotspeed" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="rotspeed" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Rotation Speed</label>
                     <comment>Duration in seconds to do a complete turn on itself. Set to 0 to keep icon still.</comment>
                     <depends>
@@ -85,30 +81,25 @@
                     </depends>
                 </field>
             </group>
-
             <group id="api" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label><![CDATA[OpenWeatherMap API]]></label>
-                <attribute type="expanded">0</attribute>
                 <comment><![CDATA[This setting is bypassed if you enable <b>Force Display</b>.]]></comment>
-                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Enabled</label>
-                    <config_path>snowflake/general/enable_api</config_path>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Status</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
                     <depends>
                         <field id="snowflake/general/enable">1</field>
                     </depends>
                 </field>
-
-                <field id="api_key" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="api_key" translate="label comment" type="obscure" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>API Key</label>
-                    <config_path>snowflake/general/api_api_key</config_path>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
                     <depends>
                         <field id="snowflake/api/enable">1</field>
                     </depends>
                     <comment><![CDATA[⚠️ Configure an OpenWeatherMap account on <a href="https://home.openweathermap.org/users/sign_up" target="_blank">openweathermap.org</a> to get the API Key. You will not be able to use the integration without the API Key.]]></comment>
                 </field>
             </group>
-
         </section>
     </system>
 </config>

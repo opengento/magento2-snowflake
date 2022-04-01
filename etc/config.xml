@@ -10,17 +10,19 @@
         <snowflake>
             <general>
                 <enable>0</enable>
-                <icon backend_model="Opengento\Snowflake\Model\Config\Backend\EmojiConverter">sss</icon>
+                <icon backend_model="Opengento\Snowflake\Model\Config\Backend\EmojiConverter">"\u2744\ufe0f"</icon>
+                <force>0</force>
+                <vspeed>0.75</vspeed>
+                <hspeed>0.75</hspeed>
                 <qty>70</qty>
                 <min_size>8</min_size>
                 <max_size>36</max_size>
-                <vspeed>0.75</vspeed>
-                <hspeed>0.75</hspeed>
                 <rotspeed>6</rotspeed>
                 <rotspeed>6</rotspeed>
             </general>
             <api>
-                <force>0</force>
+                <api_key backend_model="Magento\Config\Model\Config\Backend\Encrypted"/>
+                <ip_info_api_url>https://ipinfo.io/json</ip_info_api_url>
             </api>
         </snowflake>
     </default>

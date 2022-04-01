@@ -10,26 +10,28 @@ namespace Opengento\Snowflake\Service;
 use Cmfcmf\OpenWeatherMap;
 use Http\Adapter\Guzzle6\Client as GuzzleAdapter;
 use Http\Factory\Guzzle\RequestFactory;
-use Opengento\Snowflake\Model\Config\Snowflake;
+use Opengento\Snowflake\Model\Config\OpenWeather as OpenWeatherConfig;
 
+/**
+ * @api
+ */
 class OpenWeatherMapApi
 {
-    // Manage all Group 6xx: Snow
-    // https://openweathermap.org/weather-conditions
+    /** Manage all Group 6xx: Snow: https://openweathermap.org/weather-conditions */
     public const WEATHER_CONDITION = 'snow';
 
-    // Language of data (try your own language here!):
-    protected string $lang = 'en';
+    /** Language of data (try your own language here!):*/
+    private string $lang = 'en';
 
-    // Units (can be 'metric' or 'imperial' [default]):
-    protected string $units = 'metric';
+    /** Units (can be 'metric' or 'imperial' [default]):*/
+    private string $units = 'metric';
 
-    protected Snowflake $config;
+    private OpenWeatherConfig $openWeatherConfig;
 
     public function __construct(
-        Snowflake $config
+        OpenWeatherConfig $openWeatherConfig
     ) {
-        $this->config = $config;
+        $this->openWeatherConfig = $openWeatherConfig;
     }
 
     /**
@@ -37,15 +39,13 @@ class OpenWeatherMapApi
      */
     public function isSnowing(string $lat, string $lon): bool
     {
-        $apiKey = $this->config->getApiKey();
-
         $httpRequestFactory = new RequestFactory();
         $httpClient = GuzzleAdapter::createWithConfig([]);
 
-        $owm = new OpenWeatherMap($apiKey, $httpClient, $httpRequestFactory);
+        $owm = new OpenWeatherMap($this->openWeatherConfig->getApiKey(), $httpClient, $httpRequestFactory);
 
         $weather = $owm->getWeather(['lat' => $lat, 'lon' => $lon], $this->lang, $this->units);
 
-        return static::WEATHER_CONDITION === $weather->weather->description;
+        return self::WEATHER_CONDITION === $weather->weather->description;
     }
 }
